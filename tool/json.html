@@ -1,0 +1,417 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0043)http://www.ab173.com/json/jsonviewernew.php -->
+<html class=" ext-strict x-viewport ext-strict x-viewport">
+ <head>
+  <script src="./resource/hm.js"></script>
+  <script id="allow-copy_script">(function agent() {
+    let unlock = false
+    document.addEventListener('allow_copy', (event) => {
+      unlock = event.detail.unlock
+    })
+
+    const copyEvents = [
+      'copy',
+      'cut',
+      'contextmenu',
+      'selectstart',
+      'mousedown',
+      'mouseup',
+      'mousemove',
+      'keydown',
+      'keypress',
+      'keyup',
+    ]
+    const rejectOtherHandlers = (e) => {
+      if (unlock) {
+        e.stopPropagation()
+        if (e.stopImmediatePropagation) e.stopImmediatePropagation()
+      }
+    }
+    copyEvents.forEach((evt) => {
+      document.documentElement.addEventListener(evt, rejectOtherHandlers, {
+        capture: true,
+      })
+    })
+  })()</script>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+  <title>JSON在线视图查看器(Online JSON Viewer)</title> 
+  <meta name="description" content="JSON在线视图查看器(Online JSON Viewer)" /> 
+  <meta name="keywords" content="JSON在线视图查看器(Online JSON Viewer)" /> 
+  <link rel="stylesheet" type="text/css" href="./resource/ext-all.css" /> 
+  <script type="text/javascript" src="./resource/ext-base.js"></script> 
+  <script type="text/javascript" src="./resource/ext-all.js"></script> 
+  <style type="text/css" id="styleSheetIconCls">/* Ext.ux.iconCls */</style> 
+  <style type="text/css">.br0 {
+	COLOR: #009900 
+}
+.st0 {
+	COLOR: #3366cc
+}
+.sy0 {
+	COLOR: #339933
+}
+</style> 
+  <script>
+        window.onload=function(){
+            var oTxt = document.getElementById("edit");
+            oTxt.onkeydown = function (ev) {
+                var oEvent = ev || event;
+                if (oEvent.keyCode == 9) {
+                    if (oEvent.preventDefault) {
+                        oEvent.preventDefault();
+                    }
+                    else {
+                        window.event.returnValue = false;
+                    }
+                    oTxt.value += "    "; //这里放入了4个空格
+                }
+
+            }
+
+ 	  var temp_str = sessionStorage.getItem('temp_str');
+            if(temp_str){
+            	document.getElementById("edit").value=temp_str;
+           
+            }
+
+        } 
+    </script> 
+  <script type="text/javascript" src="./resource/jsonviewercn.js"></script>
+  <style type="text/css" id="styleSheetIconCls">/* Ext.ux.iconCls */</style> 
+ </head>
+ <body class="  ext-safari ext-mac " id="ext-gen9" style="">
+  <div id="ext-comp-1004" class="x-tab-panel" style="width: 980px;">
+   <div class="x-tab-panel-header x-unselectable" id="ext-gen21" style="width: 978px;">
+    <div class="x-tab-strip-wrap" id="ext-gen25">
+     <ul class="x-tab-strip x-tab-strip-top" id="ext-gen27">
+      <li class=" " id="ext-comp-1004__viewerPanel"><a class="x-tab-strip-close" onclick="return false;"></a><a class="x-tab-right" href="http://www.ab173.com/json/jsonviewernew.php#" onclick="return false;"><em class="x-tab-left"><span class="x-tab-strip-inner"><span class="x-tab-strip-text ">视图</span></span></em></a></li>
+      <li class=" x-tab-strip-active" id="ext-comp-1004__textPanel"><a class="x-tab-strip-close" onclick="return false;"></a><a class="x-tab-right" href="http://www.ab173.com/json/jsonviewernew.php#" onclick="return false;"><em class="x-tab-left"><span class="x-tab-strip-inner"><span class="x-tab-strip-text "><h1>JSON数据</h1></span></span></em></a></li>
+      <li class="x-tab-edge" id="ext-gen28"></li>
+      <div class="x-clear" id="ext-gen29"></div>
+     </ul>
+    </div>
+    <div class="x-tab-strip-spacer" id="ext-gen26"></div>
+   </div>
+   <div class="x-tab-panel-bwrap" id="ext-gen22">
+    <div class="x-tab-panel-body x-tab-panel-body-top" id="ext-gen23" style="width: 978px; height: 920px;">
+     <div id="textPanel" class="x-panel x-panel-noborder" style="width: 978px;">
+      <div class="x-panel-bwrap" id="ext-gen36">
+       <div class="x-panel-tbar x-panel-tbar-noheader x-panel-tbar-noborder" id="ext-gen37">
+        <div id="ext-comp-1013" class="x-toolbar x-small-editor">
+         <table cellspacing="0">
+          <tbody>
+           <tr>
+            <td id="ext-gen39">
+             <table border="0" cellpadding="0" cellspacing="0" class="x-btn-wrap x-btn " id="ext-comp-1014" style="width: auto;">
+              <tbody>
+               <tr>
+                <td class="x-btn-left"><i>&nbsp;</i></td>
+                <td class="x-btn-center"><em unselectable="on"><button class="x-btn-text" type="button" id="ext-gen41">粘贴</button></em></td>
+                <td class="x-btn-right"><i>&nbsp;</i></td>
+               </tr>
+              </tbody>
+             </table></td>
+            <td id="ext-gen47">
+             <table border="0" cellpadding="0" cellspacing="0" class="x-btn-wrap x-btn" id="ext-comp-1015" style="width: auto;">
+              <tbody>
+               <tr>
+                <td class="x-btn-left"><i>&nbsp;</i></td>
+                <td class="x-btn-center"><em unselectable="on"><button class="x-btn-text" type="button" id="ext-gen49">复制</button></em></td>
+                <td class="x-btn-right"><i>&nbsp;</i></td>
+               </tr>
+              </tbody>
+             </table></td>
+            <td><span class="ytb-sep" id="ext-gen55"></span></td>
+            <td id="ext-gen56">
+             <table border="0" cellpadding="0" cellspacing="0" class="x-btn-wrap x-btn" id="ext-comp-1016" style="width: auto;">
+              <tbody>
+               <tr>
+                <td class="x-btn-left"><i>&nbsp;</i></td>
+                <td class="x-btn-center"><em unselectable="on"><button class="x-btn-text" type="button" id="ext-gen58">格式化</button></em></td>
+                <td class="x-btn-right"><i>&nbsp;</i></td>
+               </tr>
+              </tbody>
+             </table></td>
+            <td><span class="ytb-sep" id="ext-gen64"></span></td>
+            <td id="ext-gen65">
+             <table border="0" cellpadding="0" cellspacing="0" class="x-btn-wrap x-btn" id="ext-comp-1017" style="width: auto;">
+              <tbody>
+               <tr>
+                <td class="x-btn-left"><i>&nbsp;</i></td>
+                <td class="x-btn-center"><em unselectable="on"><button class="x-btn-text" type="button" id="ext-gen67">删除空格</button></em></td>
+                <td class="x-btn-right"><i>&nbsp;</i></td>
+               </tr>
+              </tbody>
+             </table></td>
+            <td><span class="ytb-sep" id="ext-gen73"></span></td>
+            <td id="ext-gen74">
+             <table border="0" cellpadding="0" cellspacing="0" class="x-btn-wrap x-btn" id="ext-comp-1018" style="width: auto;">
+              <tbody>
+               <tr>
+                <td class="x-btn-left"><i>&nbsp;</i></td>
+                <td class="x-btn-center"><em unselectable="on"><button class="x-btn-text" type="button" id="ext-gen76">删除空格并转义</button></em></td>
+                <td class="x-btn-right"><i>&nbsp;</i></td>
+               </tr>
+              </tbody>
+             </table></td>
+            <td><span class="ytb-sep" id="ext-gen82"></span></td>
+            <td id="ext-gen83">
+             <table border="0" cellpadding="0" cellspacing="0" class="x-btn-wrap x-btn " id="ext-comp-1019" style="width: auto;">
+              <tbody>
+               <tr>
+                <td class="x-btn-left"><i>&nbsp;</i></td>
+                <td class="x-btn-center"><em unselectable="on"><button class="x-btn-text" type="button" id="ext-gen85">去除转义</button></em></td>
+                <td class="x-btn-right"><i>&nbsp;</i></td>
+               </tr>
+              </tbody>
+             </table></td>
+            <td style="width: 100%;">
+             <div class="ytb-spacer" id="ext-gen91"></div></td>
+            <td id="ext-gen92">
+             <table border="0" cellpadding="0" cellspacing="0" class="x-btn-wrap x-btn " id="ext-comp-1020" style="width: auto;">
+              <tbody>
+               <tr>
+                <td class="x-btn-left"><i>&nbsp;</i></td>
+                <td class="x-btn-center"><em unselectable="on"><button class="x-btn-text" type="button" id="ext-gen94">回到首页</button></em></td>
+                <td class="x-btn-right"><i>&nbsp;</i></td>
+               </tr>
+              </tbody>
+             </table></td>
+            <td id="ext-gen100">
+             <table border="0" cellpadding="0" cellspacing="0" class="x-btn-wrap x-btn " id="ext-comp-1021" style="width: auto;">
+              <tbody>
+               <tr>
+                <td class="x-btn-left"><i>&nbsp;</i></td>
+                <td class="x-btn-center"><em unselectable="on"><button class="x-btn-text" type="button" id="ext-gen102">关于</button></em></td>
+                <td class="x-btn-right"><i>&nbsp;</i></td>
+               </tr>
+              </tbody>
+             </table></td>
+           </tr>
+          </tbody>
+         </table>
+        </div>
+       </div>
+       <div class="x-panel-body x-panel-body-noheader x-panel-body-noborder" id="ext-gen38" style="width: 978px; height: 894px;">
+        <textarea style="width: 970px; height: 888px; font-family: monospace;" autocomplete="off" id="edit" name="edit" class=" x-form-textarea x-form-field x-form-focus"></textarea>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+  <div id="ext-comp-1004" class="x-tab-panel" style="width: 1240px;margin-top:80px "> 
+   <div class="x-tab-panel-header x-unselectable" id="ext-gen21" style="-webkit-user-select: none; width: 1238px; "> 
+    <div class="x-tab-strip-wrap" id="ext-gen25"> 
+     <ul class="x-tab-strip x-tab-strip-top" id="ext-gen27"> 
+      <li class="" id="ext-comp-1004__viewerPanel"> <a class="x-tab-strip-close" onclick="return false;"></a><a class="x-tab-right" href="http://www.ab173.com/json/#" onclick="return false;"><em class="x-tab-left"><span class="x-tab-strip-inner"><span class="x-tab-strip-text ">Viewer</span></span></em></a> </li> 
+      <li class=" x-tab-strip-active" id="ext-comp-1004__textPanel"> <a class="x-tab-strip-close" onclick="return false;"></a><a class="x-tab-right" href="http://www.ab173.com/json/#" onclick="return false;"><em class="x-tab-left"><span class="x-tab-strip-inner"><span class="x-tab-strip-text ">Text</span></span></em></a> </li> 
+      <li class="x-tab-edge" id="ext-gen28"></li> 
+      <div class="x-clear" id="ext-gen29"></div> 
+     </ul> 
+    </div> 
+    <div class="x-tab-strip-spacer" id="ext-gen26"></div> 
+   </div> 
+  </div> 
+  <div id="ext-comp-1001" class="x-tip" style="position: absolute; z-index: 20000; visibility: hidden; display: none; "> 
+   <div class="x-tip-tl"> 
+    <div class="x-tip-tr"> 
+     <div class="x-tip-tc"> 
+      <div class="x-tip-header x-unselectable" id="ext-gen10" style="-webkit-user-select: none; ">
+       <span class="x-tip-header-text"></span> 
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+   <div class="x-tip-bwrap" id="ext-gen11"> 
+    <div class="x-tip-ml"> 
+     <div class="x-tip-mr"> 
+      <div class="x-tip-mc"> 
+       <div class="x-tip-body" id="ext-gen12" style="height: auto; "></div> 
+      </div> 
+     </div> 
+    </div> 
+    <div class="x-tip-bl x-panel-nofooter"> 
+     <div class="x-tip-br"> 
+      <div class="x-tip-bc"></div> 
+     </div> 
+    </div> 
+   </div> 
+  </div> 
+  <!--内容块结束--> 
+  <div class="panel-footer"> 
+  </div> 
+  <div id="cpbtn"></div> 
+  <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d23f24d9400a31132e845c7f8a529b24";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script> 
+  <div>
+   <div style="display: none; position: fixed; top: 30px; width: auto; max-width: 100%; text-align: center; left: 50%; transform: translateX(-50%); z-index: 99999999;">
+    <div style="display: inline-block; font-size: 14px; font-weight: bold; border: 1px solid rgb(240, 195, 109); background-color: rgb(249, 237, 190); padding: 0px 10px; border-radius: 2px; box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px;"></div>
+   </div>
+  </div>
+  <div id="ext-comp-1001" class="x-tip" style="position: absolute; z-index: 20000; visibility: hidden; display: none;">
+   <div class="x-tip-tl">
+    <div class="x-tip-tr">
+     <div class="x-tip-tc">
+      <div class="x-tip-header x-unselectable" id="ext-gen10">
+       <span class="x-tip-header-text"></span>
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="x-tip-bwrap" id="ext-gen11">
+    <div class="x-tip-ml">
+     <div class="x-tip-mr">
+      <div class="x-tip-mc">
+       <div class="x-tip-body" id="ext-gen12" style="height: auto;"></div>
+      </div>
+     </div>
+    </div>
+    <div class="x-tip-bl x-panel-nofooter">
+     <div class="x-tip-br">
+      <div class="x-tip-bc"></div>
+     </div>
+    </div>
+   </div>
+  </div>
+  <select class="x-grid-editor x-hide-display"><option value="true">true</option><option value="false">false</option></select>
+  <div class="x-window-proxy" id="ext-gen165" style="display: none;"></div>
+  <div class="ext-el-mask" id="ext-gen166" style="display: none; width: 1792px; height: 1009px; z-index: 9000;"></div>
+  <div class="x-shadow" id="ext-gen189" style="z-index: 9002; left: 812px; top: 452px; width: 167px; height: 111px; display: none;">
+   <div class="xst">
+    <div class="xstl"></div>
+    <div class="xstc" style="width: 155px;"></div>
+    <div class="xstr"></div>
+   </div>
+   <div class="xsc" style="height: 99px;">
+    <div class="xsml"></div>
+    <div class="xsmc" style="width: 155px;"></div>
+    <div class="xsmr"></div>
+   </div>
+   <div class="xsb">
+    <div class="xsbl"></div>
+    <div class="xsbc" style="width: 155px;"></div>
+    <div class="xsbr"></div>
+   </div>
+  </div>
+  <div id="ext-comp-1023" class="x-window x-window-plain x-window-dlg" style="position: absolute; z-index: 9003; visibility: hidden; left: -10000px; top: -10000px; width: 159px; display: block;">
+   <div class="x-window-tl">
+    <div class="x-window-tr">
+     <div class="x-window-tc">
+      <div class="x-window-header x-unselectable x-window-draggable" id="ext-gen125">
+       <div class="x-tool x-tool-close" id="ext-gen169" style="display: none;">
+        &nbsp;
+       </div>
+       <span class="x-window-header-text" id="ext-gen167">JSON 错误</span>
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="x-window-bwrap" id="ext-gen126">
+    <div class="x-window-ml">
+     <div class="x-window-mr">
+      <div class="x-window-mc">
+       <div class="x-window-body" id="ext-gen127" style="width: 127px; height: auto;">
+        <div id="ext-gen176">
+         <div class="ext-mb-icon ext-mb-error" id="ext-gen177"></div>
+         <div class="ext-mb-content">
+          <span class="ext-mb-text" id="ext-gen178">JSON 格式错误</span>
+          <br />
+          <div class="ext-mb-fix-cursor">
+           <input type="text" class="ext-mb-input" id="ext-gen179" style="display: none;" />
+           <textarea class="ext-mb-textarea" id="ext-gen181" style="display: none;"></textarea>
+          </div>
+         </div>
+         <div class="x-progress-wrap x-hide-display" id="ext-comp-1028">
+          <div class="x-progress-inner">
+           <div class="x-progress-bar" id="ext-gen183" style="height: 16px; width: 0px;">
+            <div class="x-progress-text " id="ext-gen184" style="z-index: 99; width: 0px;">
+             <div id="ext-gen186" style="width: 382px; height: 18px;">
+              &nbsp;
+             </div>
+            </div>
+           </div>
+           <div class="x-progress-text x-progress-text-back" id="ext-gen185">
+            <div id="ext-gen187" style="width: 382px; height: 18px;">
+             &nbsp;
+            </div>
+           </div>
+          </div>
+         </div>
+         <div class="x-clear" id="ext-gen188"></div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="x-window-bl">
+     <div class="x-window-br">
+      <div class="x-window-bc">
+       <div class="x-window-footer" id="ext-gen128">
+        <div class="x-panel-btns-ct">
+         <div class="x-panel-btns x-panel-btns-center">
+          <table cellspacing="0">
+           <tbody>
+            <tr>
+             <td class="x-panel-btn-td" id="ext-gen131">
+              <table border="0" cellpadding="0" cellspacing="0" class="x-btn-wrap x-btn " id="ext-comp-1024" style="width: 75px;">
+               <tbody>
+                <tr>
+                 <td class="x-btn-left"><i>&nbsp;</i></td>
+                 <td class="x-btn-center"><em unselectable="on"><button class="x-btn-text" type="button" id="ext-gen133">OK</button></em></td>
+                 <td class="x-btn-right"><i>&nbsp;</i></td>
+                </tr>
+               </tbody>
+              </table></td>
+             <td class="x-panel-btn-td x-hide-offsets" id="ext-gen139">
+              <table border="0" cellpadding="0" cellspacing="0" class="x-btn-wrap x-btn" id="ext-comp-1025" style="width: 75px;">
+               <tbody>
+                <tr>
+                 <td class="x-btn-left"><i>&nbsp;</i></td>
+                 <td class="x-btn-center"><em unselectable="on"><button class="x-btn-text" type="button" id="ext-gen141">Yes</button></em></td>
+                 <td class="x-btn-right"><i>&nbsp;</i></td>
+                </tr>
+               </tbody>
+              </table></td>
+             <td class="x-panel-btn-td x-hide-offsets" id="ext-gen147">
+              <table border="0" cellpadding="0" cellspacing="0" class="x-btn-wrap x-btn" id="ext-comp-1026" style="width: 75px;">
+               <tbody>
+                <tr>
+                 <td class="x-btn-left"><i>&nbsp;</i></td>
+                 <td class="x-btn-center"><em unselectable="on"><button class="x-btn-text" type="button" id="ext-gen149">No</button></em></td>
+                 <td class="x-btn-right"><i>&nbsp;</i></td>
+                </tr>
+               </tbody>
+              </table></td>
+             <td class="x-panel-btn-td x-hide-offsets" id="ext-gen155">
+              <table border="0" cellpadding="0" cellspacing="0" class="x-btn-wrap x-btn" id="ext-comp-1027" style="width: 75px;">
+               <tbody>
+                <tr>
+                 <td class="x-btn-left"><i>&nbsp;</i></td>
+                 <td class="x-btn-center"><em unselectable="on"><button class="x-btn-text" type="button" id="ext-gen157">Cancel</button></em></td>
+                 <td class="x-btn-right"><i>&nbsp;</i></td>
+                </tr>
+               </tbody>
+              </table></td>
+            </tr>
+           </tbody>
+          </table>
+          <div class="x-clear"></div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+   <a href="http://www.ab173.com/json/jsonviewernew.php#" class="x-dlg-focus" tabindex="-1" id="ext-gen163">&nbsp;</a>
+  </div>
+ </body>
+</html>
