@@ -71,7 +71,7 @@ Ext.override(Ext.Panel, {
 		if (this.ownerCt) {
 			this.ownerCt.doLayout();
 		}
-	}
+	}https://www.jcijc.cn/tool/json.html
 });
 
 Ext.ux.iconCls = function () {
@@ -330,7 +330,7 @@ Ext.onReady(function () {
 			}},
 			'->',
 			{text: '回到首页', handler: function(){
-        window.location.href="http://www.ab173.com/";
+        window.location.href="http://www.jcijc.cn/tool/";
 			}},
 			{text: '关于', handler: aboutWindow}
 		],
