@@ -330,7 +330,7 @@ Ext.onReady(function () {
 			}},
 			'->',
 			{text: '回到首页', handler: function(){
-        window.location.href="http://www.ab173.com/";
+        window.location.href="http://www.jcijc.cn/";
 			}},
 			{text: '关于', handler: aboutWindow}
 		],
